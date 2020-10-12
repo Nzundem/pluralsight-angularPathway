@@ -1,6 +1,6 @@
 
     
-    <div>
+    <div [routerLink]="['/events',event.id]" class="well hoverwell thumbnail">
         <div class="well hoverwell thumbnail">
         <h3>{{event.name}}</h3>
         <div>Date:{{event.date}}</div>
@@ -15,7 +15,7 @@
         <span class ="pad-left"></span>
         <span>{{event.location.city}}, {{event.location.country}}</span>
         </div>
-        <div *ngIf="event?.locationUrl">
+        <div *ngIf="event?.locationUrl && !event?.location">
         <span>LocationUrl: <a href="{{event.locationUrl}}" >{{event.locationUrlName}} </a> </span>
         </div>
         <button class="btn btn-primary" (click)="handleThumbnailClick();parentHandleThumbnailClick()">Click Me!</button>
