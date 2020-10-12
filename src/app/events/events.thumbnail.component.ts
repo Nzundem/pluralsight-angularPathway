@@ -2,7 +2,7 @@ import {Component,Input, Output, EventEmitter} from '@angular/core';
 
 @Component({
     selector:'event-thumbnail',
-    templateUrl: 'events.list.component.html' ,
+    templateUrl: './events.thumbnail.component.html' ,
     styles:[`
         .pad-left{
             margin-left: 10px;
