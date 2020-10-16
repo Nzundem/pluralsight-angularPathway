@@ -9,7 +9,10 @@ import {
   CreateEventComponent,
   EventRouteActivator,
   EventListResolverService,
-  EventsListComponent
+  CreateSessionComponent,
+  EventsListComponent, 
+  SessionListComponenet,
+  DurationPipe
 } 
 
 from './events/index'
@@ -18,24 +21,34 @@ import {NavBarComponent} from './nav/navbar.component'
 import { EventsAppComponent } from './events.app.component';
 import {appRoutes} from './routes';
 import { Error404Component } from './errors/4040.component';
+import { AuthService } from './user/auth.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CollapsibleWellComponent } from './common/collapsible-well.component';
 
 @NgModule({
   declarations: [
+    CollapsibleWellComponent,
     NavBarComponent,
     EventsAppComponent,
     EventsListComponent,
     EventThumbnailComponent,
     EventDetailsComponent,
     CreateEventComponent,
-    Error404Component 
+    CreateSessionComponent,
+    Error404Component,
+    SessionListComponenet,
+    DurationPipe 
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     EventService,
     EventRouteActivator,
+    AuthService,
     EventListResolverService,
     {
       provide: 'canDeactivateCreateEvent',
