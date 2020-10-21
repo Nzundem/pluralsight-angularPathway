@@ -16,7 +16,10 @@ import {
   Toastr,TOASTR_TOKEN,
   CollapsibleWellComponent,
   JQ_TOKEN,
-  SimpleModalComponenet, ModalTriggerDirective 
+  SimpleModalComponenet, 
+  ModalTriggerDirective,
+  UpvoteComponent,
+  VoterService, LocationValidator
 } 
 
 from './events/index'
@@ -45,7 +48,9 @@ let jQuery: Object = window['$']
     SessionListComponenet,
     DurationPipe,
     SimpleModalComponenet,
-    ModalTriggerDirective
+    ModalTriggerDirective,
+    UpvoteComponent,
+    LocationValidator
   ],
   imports: [
     BrowserModule,
@@ -55,6 +60,7 @@ let jQuery: Object = window['$']
   ],
   providers: [
     EventService,
+    VoterService,
     EventRouteActivator,
     {provide: TOASTR_TOKEN, useValue: toastr},
     {provide: JQ_TOKEN, useValue: jQuery},
