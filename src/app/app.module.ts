@@ -7,7 +7,7 @@ import {
   EventService,
   EventDetailsComponent,
   CreateEventComponent,
-  EventRouteActivator,
+  // EventRouteActivator,
   EventListResolverService,
   CreateSessionComponent,
   EventsListComponent, 
@@ -19,7 +19,9 @@ import {
   SimpleModalComponenet, 
   ModalTriggerDirective,
   UpvoteComponent,
-  VoterService, LocationValidator
+  VoterService, 
+  LocationValidator, 
+  EventResolverService
 } 
 
 from './events/index'
@@ -30,6 +32,7 @@ import {appRoutes} from './routes';
 import { Error404Component } from './errors/4040.component';
 import { AuthService } from './user/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 
 let toastr: Toastr = window['toastr'];
 let jQuery: Object = window['$']
@@ -56,12 +59,14 @@ let jQuery: Object = window['$']
     BrowserModule,
     RouterModule.forRoot(appRoutes),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [
     EventService,
     VoterService,
-    EventRouteActivator,
+    EventResolverService,
+    // EventRouteActivator, this is a route guard that has been deleted because the rout is now listening to an observabel, not an event, watch video 4 of module 14
     {provide: TOASTR_TOKEN, useValue: toastr},
     {provide: JQ_TOKEN, useValue: jQuery},
     AuthService,
