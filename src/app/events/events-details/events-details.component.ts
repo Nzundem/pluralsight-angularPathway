@@ -20,35 +20,35 @@ import { EventService } from '../shared/event.service';
 })
 export class EventDetailsComponent {
     event: IEvent;
-    addMode:boolean
-    filterBy: string = 'all';
-    sortBy: string ='name';
-    saveNewSessionForEventDetails(session:ISession){
-        const nextId =Math.max.apply(null,this.event.sessions.map(s=>s.id))
-        session.id = nextId+1
+    addMode: boolean
+    filterBy = 'all';
+    sortBy = 'name';
+    saveNewSessionForEventDetails(session: ISession) {
+        const nextId = Math.max.apply(null, this.event.sessions.map(s => s.id))
+        session.id = nextId + 1
         this.event.sessions.push(session)
         this.eventService.saveEvent(this.event).subscribe()
         this.addMode = false
     }
-    cancelAddSessionForEventDetails(){
-        this.addMode=false
+    cancelAddSessionForEventDetails() {
+        this.addMode = false
     }
 
     constructor(private eventService: EventService, private route: ActivatedRoute) { }
 
-    addSession(){
-        this.addMode=true
+    addSession() {
+        this.addMode = true
     }
 
     ngOnInit() {
 
-        this.route.data.forEach((data)=>{
-            
+        this.route.data.forEach((data) => {
+
                 this.event =  data['event']
                 this.addMode = false;
                 this.filterBy = 'all';
-                this.sortBy ='name';
-                
+                this.sortBy = 'name';
+
         })
 
     }

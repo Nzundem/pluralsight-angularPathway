@@ -1,26 +1,26 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import { IUser } from './user.model';
 import {HttpClient, HttpHeaders} from '@angular/common/http'
-import {catchError,tap} from 'rxjs/operators'
+import {catchError, tap} from 'rxjs/operators'
 import { of } from 'rxjs';
 
 @Injectable()
 
-export class AuthService{
+export class AuthService {
 
 
-    constructor(private http:HttpClient){}
+    constructor(private http: HttpClient) {}
 
     currentUser: IUser
-        loginUser(userName:string, password:string){
-            let loginInfo = {username:userName, password:password}
-            let options = {headers: new HttpHeaders({'Content-Type':'application/json'})};
-    
-            return this.http.post('/api/login', loginInfo,options)
-            .pipe(tap(data=>{
+        loginUser(userName: string, password: string) {
+            const loginInfo = {username: userName, password: password}
+            const options = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
+
+            return this.http.post('/api/login', loginInfo, options)
+            .pipe(tap(data => {
                 this.currentUser = <IUser>data ['user']
             }))
-            .pipe(catchError( err =>{
+            .pipe(catchError( err => {
                 return of (false)
             }))
 
@@ -34,29 +34,29 @@ export class AuthService{
         // }
 
     }
-    isAuthenticated(){
+    isAuthenticated() {
         return !!this.currentUser;
     }
-    checkAuthenticatedStatus(){
+    checkAuthenticatedStatus() {
         return this.http.get('/api/currentIdentity')
-        .pipe(tap(data=>{
-            if (data instanceof Object){
+        .pipe(tap(data => {
+            if (data instanceof Object) {
                 this.currentUser = <IUser>data;
             }
         }))
         .subscribe()
     }
-    logout(){
+    logout() {
         this.currentUser = undefined;
-        
-        let options = {headers: new HttpHeaders({'Content-Type':'application/json'})};
-        return this.http.post('api/logout',{},options)
+
+        const options = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
+        return this.http.post('api/logout', {}, options)
     }
-    updateCurrentUser(firstName:string,lastName:string){
-        this.currentUser.firstName=firstName;
-        this.currentUser.lastName=lastName  ; 
-        let options = {headers: new HttpHeaders({'Content-Type':'application/json'})};
-        return this.http.put(`/api/users/${this.currentUser.id}`,this.currentUser,options)
-    
+    updateCurrentUser(firstName: string, lastName: string) {
+        this.currentUser.firstName = firstName;
+        this.currentUser.lastName = lastName  ;
+        const options = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
+        return this.http.put(`/api/users/${this.currentUser.id}`, this.currentUser, options)
+
     }
 }

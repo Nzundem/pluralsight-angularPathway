@@ -4,10 +4,10 @@ import { EventService } from './shared/event.service';
 
 @Injectable()
 
-export class EventListResolverService implements Resolve<any>{
+export class EventListResolverService implements Resolve<any> {
 
-    constructor(private eventService: EventService){}
-    resolve(){
+    constructor(private eventService: EventService) {}
+    resolve() {
         return this.eventService.getEvents()
     }
 

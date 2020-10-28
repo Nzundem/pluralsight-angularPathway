@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {RouterModule} from '@angular/router';
+import {PreloadAllModules, RouterModule} from '@angular/router';
 
 import {
   EventThumbnailComponent,
@@ -10,19 +10,19 @@ import {
   // EventRouteActivator,
   EventListResolverService,
   CreateSessionComponent,
-  EventsListComponent, 
+  EventsListComponent,
   SessionListComponenet,
   DurationPipe,
-  Toastr,TOASTR_TOKEN,
+  Toastr, TOASTR_TOKEN,
   CollapsibleWellComponent,
   JQ_TOKEN,
-  SimpleModalComponenet, 
+  SimpleModalComponenet,
   ModalTriggerDirective,
   UpvoteComponent,
-  VoterService, 
-  LocationValidator, 
+  VoterService,
+  LocationValidator,
   EventResolverService
-} 
+}
 
 from './events/index'
 
@@ -34,8 +34,8 @@ import { AuthService } from './user/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 
-let toastr: Toastr = window['toastr'];
-let jQuery: Object = window['$']
+const toastr: Toastr = window['toastr'];
+const jQuery: Object = window['$']
 
 @NgModule({
   declarations: [
@@ -57,7 +57,7 @@ let jQuery: Object = window['$']
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes,{preloadingStrategy:  PreloadAllModules}),
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule
@@ -75,15 +75,15 @@ let jQuery: Object = window['$']
       provide: 'canDeactivateCreateEvent',
       useValue: checkDirtyState
     }
-  
+
   ],
   bootstrap: [EventsAppComponent]
 })
 export class AppModule { }
 
-export function checkDirtyState(component: CreateEventComponent){
-  if(component.isDirty){
-    return window.confirm("You have not saved this event, do you want to still cancel?")
+export function checkDirtyState(component: CreateEventComponent) {
+  if (component.isDirty) {
+    return window.confirm('You have not saved this event, do you want to still cancel?')
   }
   return true
 }
