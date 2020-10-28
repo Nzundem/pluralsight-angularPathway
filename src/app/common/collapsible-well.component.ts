@@ -1,7 +1,7 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input } from '@angular/core';
 
 @Component({
-    selector:"collapsible-well",
+    selector: 'collapsible-well',
     template: `
     <div (click)="toggleContent()" class="well pointable">
     <h4 class="well-title">
@@ -14,12 +14,12 @@ import { Component, Input } from "@angular/core";
     `
 })
 
-export class CollapsibleWellComponent{
+export class CollapsibleWellComponent {
     @Input () title: string;
 
-    visibility: boolean = false;
+    visibility = false;
 
-    toggleContent(){
+    toggleContent() {
         this.visibility = !this.visibility
     }
 }

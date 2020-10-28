@@ -1,6 +1,6 @@
 
 
-export interface IEvent{
+export interface IEvent {
     id: number,
     name: string,
     date: Date,
@@ -14,7 +14,7 @@ export interface IEvent{
     },
     locationUrl?: string,
     sessions: ISession[]
-    
+
 }
 
 export interface ISession {

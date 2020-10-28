@@ -17,15 +17,15 @@ import { IEvent } from './shared/index';
 
         `
 })
-export class EventsListComponent implements OnInit{
-    events:IEvent
-    constructor(private eventService: EventService, private route: ActivatedRoute){
+export class EventsListComponent implements OnInit {
+    events: IEvent
+    constructor(private eventService: EventService, private route: ActivatedRoute) {
 
     }
-    parentHandleThumbnailClick(data){
-        console.log("received :", data)
+    parentHandleThumbnailClick(data) {
+        console.log('received :', data)
     }
-    ngOnInit(){
+    ngOnInit() {
         // this.eventService.getEvents().subscribe(events => {this.events=events})
         this.events = this.route.snapshot.data['events']
     }

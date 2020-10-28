@@ -1,13 +1,13 @@
-import { style } from '@angular/animations';
-import {Component} from '@angular/core';
+
+import {Component, OnInit} from '@angular/core';
 import { Session } from 'protractor';
 import { EventService, ISession } from '../events';
 import { AuthService } from '../user/auth.service';
 
 @Component({
-    selector: "nav-bar",
+    selector: 'app-navbar',
     templateUrl: './navbar.component.html' ,
-    styles:[`
+    styles: [`
         .nav.navbar-nav{
             fontsize: 18px;
         }
@@ -25,21 +25,22 @@ import { AuthService } from '../user/auth.service';
     `]
 })
 
-export class NavBarComponent{
-    searchTerm: string ="";
+export class NavBarComponent implements OnInit {
+    searchTerm = '';
     foundSessions: ISession[];
-    
-    constructor(private auth:AuthService,private eventService:EventService){}
-    searchSessions(searchTerm){
+
+    constructor(private auth: AuthService, private eventService: EventService) {}
+    searchSessions(searchTerm) {
 
         this.eventService.searchSessions(searchTerm).subscribe(
-            sessions=>{
+            sessions => {
                 this.foundSessions = sessions;
                 // console.log(this.foundSessions)
             }
         )
     }
-
-
+    ngOnInit () {
+        this.auth.isAuthenticated()
+    }
 
 }

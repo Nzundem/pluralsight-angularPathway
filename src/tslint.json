@@ -12,6 +12,8 @@
             "element",
             "app",
             "kebab-case"
-        ]
+        ],
+        "eofline":false,
+        "semicolon": false
     }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Output,EventEmitter } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ISession, restrictedWords } from '../shared';
 
@@ -9,7 +9,7 @@ import { ISession, restrictedWords } from '../shared';
   em{float:right;
     color: #E05C65;
     padding-left: 10px;
-  
+
   }
   .error input, .error textarea, .error select{
     background-color: #E05C65;
@@ -26,11 +26,11 @@ import { ISession, restrictedWords } from '../shared';
   .error : -ms-input-placeholder{
     color:#999;
   }
-  
+
   `]
 })
 
-export class CreateSessionComponent implements OnInit{
+export class CreateSessionComponent implements OnInit {
   @Output () saveNewSession = new EventEmitter()
   @Output () cancelAddSession = new EventEmitter()
 
@@ -40,15 +40,15 @@ export class CreateSessionComponent implements OnInit{
     presenter: FormControl
     duration: FormControl
     level: FormControl
-    abstract:FormControl
+    abstract: FormControl
 
-    ngOnInit(){
+    ngOnInit() {
 
         this.name = new FormControl('', Validators.required)
         this.presenter = new FormControl ('', Validators.required)
         this.duration = new FormControl ('', Validators.required)
         this.level = new FormControl ('', Validators.required)
-        this.abstract = new FormControl ('', [Validators.required, Validators.maxLength(400), restrictedWords(['foo','bar'])])
+        this.abstract = new FormControl ('', [Validators.required, Validators.maxLength(400), restrictedWords(['foo', 'bar'])])
 
 
         this.newSessionForm = new FormGroup({
@@ -63,8 +63,8 @@ export class CreateSessionComponent implements OnInit{
 
     }
 
-    saveSession(formValues){
-        let session :ISession={
+    saveSession(formValues) {
+        const session: ISession = {
             id: undefined,
             voters: [],
             name: formValues.name,
@@ -75,7 +75,7 @@ export class CreateSessionComponent implements OnInit{
         }
         this.saveNewSession.emit(session)
     }
-    cancel(){
+    cancel() {
       this.cancelAddSession.emit()
     }
 }

@@ -1,10 +1,10 @@
-import {Component,Input, Output, EventEmitter} from '@angular/core';
+import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {IEvent} from '../events/shared/event.module'
 
 @Component({
-    selector:'event-thumbnail',
+    selector: 'event-thumbnail',
     templateUrl: './events.thumbnail.component.html' ,
-    styles:[`
+    styles: [`
         .pad-left{
             margin-left: 10px;
 
@@ -21,21 +21,21 @@ import {IEvent} from '../events/shared/event.module'
     ]
 })
 
-export class EventThumbnailComponent{
-    
-    @Input() event:IEvent
+export class EventThumbnailComponent {
+
+    @Input() event: IEvent
     @Output() eventClick = new EventEmitter()
 
-    logFoo(){
-        console.log("Log foo")
+    logFoo() {
+        console.log('Log foo')
     }
-    handleThumbnailClick(){
-        console.log("clicked!")
+    handleThumbnailClick() {
+        console.log('clicked!')
     }
-    parentHandleThumbnailClick(){
-        this.eventClick.emit("clicked for Parent sent!")
+    parentHandleThumbnailClick() {
+        this.eventClick.emit('clicked for Parent sent!')
     }
-    getStartTime(){
+    getStartTime() {
         const isEarly = this.event && this.event.time === '8:00 am'
         return {green: isEarly, bold: isEarly}
     }
